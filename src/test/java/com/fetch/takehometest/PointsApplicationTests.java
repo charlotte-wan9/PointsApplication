@@ -34,7 +34,7 @@ class PointsApplicationTests {
     private ObjectMapper objectMapper;
 
 	@Autowired
-	private pointsService pointsService;
+	private PointsService pointsService;
 
 	/**
 	 * After each test case, spend all balance so that requests to endpoint "/add" in individual cases
