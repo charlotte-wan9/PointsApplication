@@ -1,45 +1,55 @@
 1. Why did you choose the tools, libraries, and language you used for the coding exercise?
-    I chose to use Spring Boot with Java for a couple of reasons. First of all, Java is the first language
-    I learned since I first started programming and it is the language I am most familiar with. During my
-    intership last summer, I gained experience with Spring Boot and building web applications with Spring.
-    When I started reading the instructions, it immediately came to me that using Spring Boot and Java is
-    probably the best way to complete this test. In addition, Spring is now one of the most popular and
-    commonly-used tool for web services, is easy to test and build, and I also view this test as an opportunity
-    to test my understanding of Spring Boot, which is something that is relatively new to me, and to further
-    build onto my current knowledge with a realistic example.
+    I chose to use Spring Boot with Java for a couple of reasons. First of all, I have worked 
+    extensively with Java. It is a language not only I am proficient in but also the one I 
+    initially learned when I first started programming. During my internship last summer, I 
+    had the opportunity to gain experience with Spring Boot and became familiar with this 
+    tool. Upon carefully reading the instructions, it immediately came to me that the 
+    features offered by Spring Boot, such as its robust support for building RESTful web 
+    services, align well with the requirements. The framework's ease of use, 3rd-party 
+    integration, and wide use in the industry made it a natural choice for me. I also view 
+    this assessment a valuable opportunity to deepen my understanding of a tool that is 
+    relatively new to me and build onto my current knowledge with a realistic example.
 
 
 2. What are the advantages and disadvantages of your solution?
-    Advantages:
-        - One advantage would be a common advantage of projects built with Spring - there is no need for spending
-        a lot of time writing and adding annotations and xml configurations, and it provides many third-party
-        configurations that we can directly use, such as JUnit.
-        - Another advantage would be the use of service layers. I divided my program into DAO, service, and
-        controller layers, and it provides a separation of concern. Controller layer is only responsible for 
-        taking requests from and sending response back to the user. Service layer is called by the controller
-        and does the specific operations/provides the business logic based on the request sent. DAO layer is the
-        only one interacting with the database, or in this case, the data structures that stores information
-        about transactions, user balance, and payers. This also provides security to the program since the user
-        will not be able to access our database directly.
-        - Some other advantages may include simplicity, readability, inclusion of javadoc and comments,
-        organization, and ease to test and maintain.
-    Disadvantages:
-        - One disadvantage that is obvious to me is the multiple uses of priority queue and hashmaps, which
-        can potentially be large/expensive in terms of space complexity.
-        - Also, the test cases that I included in the test class may not be comprehensive enough for testing
-        edge cases.
-        - I did not have enough time to implement and connect a persistent database for storing transactions,
-        user's balance, payers, etc., so all data will be lost when the application restarts.
+    - Advantages:
+        - One advantage would be a common advantage of projects built with Spring - there is 
+        no need for spending a lot of time writing and adding annotations and xml 
+        configurations, and it provides many third-party configurations that we can directly 
+        use, such as JUnit.
+        - Another advantage would be the use of service layers. I divided my program into 
+        DAO, service, and controller layers, and it provides a separation of concern. 
+        Controller layer is only responsible for taking requests from and sending response 
+        back to the user. Service layer is called by the controller and does the specific 
+        operations/provides the business logic based on the request sent. DAO layer is the
+        only one interacting with the database, or in this case, the data structures that 
+        stores information about transactions, user balance, and payers. This also provides 
+        security to the program since the user will not be able to access our database 
+        directly.
+        - Some other advantages may include simplicity, readability, inclusion of javadoc and 
+        comments, organization, and ease to test and maintain.
+    - Disadvantages:
+        - One disadvantage that is obvious to me is the multiple uses of priority queue and 
+        hashmaps, which can potentially be large/expensive in terms of space complexity.
+        - Also, the test cases that I included in the test class may not be comprehensive 
+        enough for testing edge cases.
+        - I did not have enough time to implement and connect a persistent database for 
+        storing transactions, user's balance, payers, etc., so all data will be lost when the 
+        application restarts.
 
 
 3. What has been a favorite school/personal project thus far? What about it that challenged you?
-    Our last project in my Operating Systems class was very interesting and is probably my favorite so far.
-    We were asked to implement a new system call `getlastcat` that returns the argument of the last cat
-    command in xv6. It seems very challenging at first, since it was very unclear to me even where to start.
-    I spent some time studying about how system calls work and looking over source codes in xv6, and went
-    to office hours. Once it became clearer to me how everything works together, I started enjoying it
-    because it was very different from writing user-level programs, and the idea that I am modifying code in 
-    kernel space is extremely interesting to me. I think the challenge comes from the fact that I have never
-    interated with an OS in this way before, and I have to learn and try to understand everything I need to
-    complete the project in a short period of time, but I also enjoyed the experience and felt accomplished
-    when my implementation actually worked.
+    The previous project in my Operating Systems class was very interesting and is probably 
+    my favorite so far. We were asked to implement a new system call `getlastcat` that 
+    returns the argument of the last cat command in the xv6 operating system. The initial 
+    challenge was that the concept of modifying code in kernel space was relatively new. It 
+    was unclear to me where to start, and the intricacies of system calls were initially 
+    overwhelming. Therefore, I first dedicated time to studying how system calls work and 
+    diving into reading the xv6 source code. I also attended office hours to discuss my 
+    questions, and it significantly aided in understanding system calls and identifying the 
+    components that needed modifcation. Once my comprehension deepened, I started enjoying it 
+    because it was very different from writing user-level programs, which we have always been 
+    doing. I think the challenge comes from the fact that I have never interated with an OS 
+    in this way before, and I have to learn and apply new knowledge in a short period of time 
+    to complete the project, but I also enjoyed the experience and felt accomplished seeing 
+    my implementation integrate into an existing OS.

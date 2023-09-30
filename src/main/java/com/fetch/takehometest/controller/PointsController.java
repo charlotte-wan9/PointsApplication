@@ -30,6 +30,16 @@ public class PointsController {
     }
 
     /**
+     * Prints a welcome message on the homepage
+     * 
+     * @return welcome message
+     */
+    @GetMapping("/")
+    public String welcome() {
+        return "<h1>Welcome to the Points Application!</h1>";
+    }
+
+    /**
      * Handles a post request to endpoint "/add"
      * 
      * @param transaction the request posted (a TransactionRequest)
