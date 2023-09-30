@@ -1,2 +1,0 @@
-start:
-  ./mvnw clean package
