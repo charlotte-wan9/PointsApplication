@@ -1,0 +1,8 @@
+com\fetch\takehometest\model\SpendResponse.class
+com\fetch\takehometest\model\TransactionComparator.class
+com\fetch\takehometest\service\PointsService.class
+com\fetch\takehometest\controller\PointsController.class
+com\fetch\takehometest\dao\PointsDAO.class
+com\fetch\takehometest\PointsApplication.class
+com\fetch\takehometest\model\TransactionRequest.class
+com\fetch\takehometest\model\SpendRequest.class
