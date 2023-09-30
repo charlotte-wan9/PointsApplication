@@ -21,6 +21,8 @@
         only one interacting with the database, or in this case, the data structures that stores information
         about transactions, user balance, and payers. This also provides security to the program since the user
         will not be able to access our database directly.
+        - Some other advantages may include simplicity, readability, inclusion of javadoc and comments,
+        organization, and ease to test and maintain.
     Disadvantages:
         - One disadvantage that is obvious to me is the multiple uses of priority queue and hashmaps, which
         can potentially be large/expensive in terms of space complexity.
