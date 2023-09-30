@@ -81,7 +81,6 @@ public class PointsService {
         HashMap<String, Integer> balance = pointsDAO.getBalance();
         Integer total = 0;
         for (Integer val : balance.values()) {
-            System.out.println(val + "\n");
             total += val;
         }
         return total;
