@@ -3,6 +3,7 @@ package com.fetch.takehometest;
 import java.time.Instant;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fetch.takehometest.model.SpendRequest;
 import com.fetch.takehometest.model.TransactionRequest;
+import com.fetch.takehometest.service.PointsService;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -30,6 +32,26 @@ class PointsApplicationTests {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+	@Autowired
+	private pointsService pointsService;
+
+	/**
+	 * After each test case, spend all balance so that requests to endpoint "/add" in individual cases
+	 * doesn't affect one another
+	 * 
+	 * @throws Exception
+	 */
+	@AfterEach
+	void spendAll() throws Exception {
+		SpendRequest spendRequest = new SpendRequest();
+		spendRequest.setPoints(pointsService.getTotal());
+
+		mockMvc.perform(post("/spend")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(spendRequest)))
+				.andExpect(status().isOk());
+	}
 
 	/** 
 	 * addPoints() unit test
