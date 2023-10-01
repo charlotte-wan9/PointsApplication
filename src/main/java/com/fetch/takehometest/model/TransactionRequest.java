@@ -3,7 +3,7 @@ package com.fetch.takehometest.model;
 import java.time.Instant;
 
 /**
- * Object representation of TransactionRequest
+ * Object representation of a transaction request to endpoint "/add"
  * 
  * @author Charlotte Wan
  */

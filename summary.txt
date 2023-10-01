@@ -29,14 +29,12 @@
         - Some other advantages may include simplicity, readability, inclusion of javadoc and 
         comments, organization, and ease to test and maintain.
     - Disadvantages:
-        - One disadvantage that is obvious to me is the multiple uses of priority queue and 
-        hashmaps, which can potentially be large/expensive in terms of space complexity.
+        - One disadvantage that is obvious to me is the multiple uses of lists and hashmaps,
+        which can potentially be large/expensive in terms of space complexity.
         - Also, the test cases that I included in the test class may not be comprehensive 
         enough for testing edge cases.
-        - I did not have enough time to implement and connect a persistent database for 
-        storing transactions, user's balance, payers, etc., so all data will be lost when the 
-        application restarts. (Also the instructions did not mention a database, so I wasn't sure
-        whether to include one or not)
+        - There is no physical/real database for storing transactions, user's balance, payers,
+        etc., so all data will be lost when the application restarts.
 
 
 3. What has been a favorite school/personal project thus far? What about it that challenged you?

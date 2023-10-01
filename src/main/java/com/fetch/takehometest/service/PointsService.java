@@ -1,10 +1,12 @@
 package com.fetch.takehometest.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.PriorityQueue;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fetch.takehometest.dao.PointsDAO;
@@ -18,33 +20,39 @@ import com.fetch.takehometest.model.TransactionRequest;
  */
 @Service
 public class PointsService {
-    private final PointsDAO pointsDAO;
-
-    public PointsService(PointsDAO pointsDAO) {
-        this.pointsDAO = pointsDAO;
-    }
+    // hashmap to store the user's balance for each payer
+    private final HashMap<String, Integer> balance = new HashMap<>();
+    
+    @Autowired
+    private PointsDAO pointsDAO;
 
     /**
-     * Calls `addPoints` in DAO layer to add a TransactionRequest to `transactions`
+     * Adds a TransactionRequest to database
      * 
      * @param transaction TransactionRequest to add
      */
     public void addPoints(TransactionRequest transaction) {
-        pointsDAO.addPoints(new TransactionRequest(transaction.getPayer(),
-                                                   transaction.getPoints(),
-                                                   transaction.getTimestamp()));
+        pointsDAO.save(transaction);
+
+        // add `payer: points` pair to `balance`
+        String payer = transaction.getPayer();
+        Integer points = transaction.getPoints();
+        if (!balance.containsKey(payer)) {
+            balance.put(payer, points);
+        } else {
+            balance.put(payer, balance.get(payer) + points);
+        }
     }
 
     /**
-     * Gets `transactions` and `balance` from DAO layer and updates accordingly based on the points spent
+     * Gets `transactions` from DAO layer and updates accordingly based on the points spent
      *  
      * @param pointsToSpend points to spend
      * @return a list of SpendResponse
      */
     public ArrayList<SpendResponse> spendPoints(int pointsToSpend) {
         ArrayList<SpendResponse> spendList = new ArrayList<>();
-        PriorityQueue<TransactionRequest> transactions = pointsDAO.getTransactions();
-        HashMap<String, Integer> balance = pointsDAO.getBalance();
+        List<TransactionRequest> transactions = pointsDAO.findAll(Sort.by(Sort.Direction.ASC, "timestamp"));
 
         // travers `transactions`
         Iterator<TransactionRequest> iterator = transactions.iterator();
@@ -57,11 +65,12 @@ public class PointsService {
                 updateSpendList(spendList, payer, -points);
                 pointsToSpend -= points; // decrement `pointsToSpend` by `points`
                 balance.put(payer, balance.get(payer) - points); // update `balance`
-                iterator.remove(); // remove current `transaction` from queue
+                pointsDAO.delete(tr); // remove current `transaction` from database
             } else {
                 updateSpendList(spendList, payer, -pointsToSpend);
                 tr.setPoints(points - pointsToSpend); // update `transactions`
                 balance.put(payer, balance.get(payer) - pointsToSpend); // update `balance`
+                pointsDAO.save(tr); // update current `transaction` in database
                 pointsToSpend = 0; // clear `pointsToSpend` to 0
             }
         }
@@ -69,7 +78,7 @@ public class PointsService {
     }
 
     public HashMap<String, Integer> getBalance() {
-        return pointsDAO.getBalance();
+        return balance;
     }
 
     /**
@@ -78,7 +87,6 @@ public class PointsService {
      * @return user's total balance
      */
     public int getTotal() {
-        HashMap<String, Integer> balance = pointsDAO.getBalance();
         Integer total = 0;
         for (Integer val : balance.values()) {
             total += val;

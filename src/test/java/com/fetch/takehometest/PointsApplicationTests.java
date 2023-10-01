@@ -55,6 +55,7 @@ class PointsApplicationTests {
 
 	/** 
 	 * addPoints() unit test
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -72,6 +73,7 @@ class PointsApplicationTests {
 
 	/** 
 	 * spendPoints() unit test
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -98,6 +100,7 @@ class PointsApplicationTests {
 
 	/** 
 	 * spendPoints() unit test - case where user does not have enough points
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -121,6 +124,7 @@ class PointsApplicationTests {
 
 	/** 
 	 * getBalance() unit test
+	 * 
 	 * @throws Exception
 	 */
 	@Test
@@ -142,6 +146,7 @@ class PointsApplicationTests {
 
 	/** 
 	 * PointsController integration test
+	 * 
 	 * @throws Exception
 	 */
 	@Test

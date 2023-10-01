@@ -1,7 +1,7 @@
 package com.fetch.takehometest.model;
 
 /**
- * Object representation of SpendRequest
+ * Object representation of spend request to endpoint "/spend"
  * 
  * @author Charlotte Wan
  */

@@ -3,6 +3,7 @@ package com.fetch.takehometest.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +28,8 @@ import com.fetch.takehometest.service.PointsService;
 @RestController
 public class PointsController {
 
-    private final PointsService pointsService;
-
-    public PointsController(PointsService pointsService) {
-        this.pointsService = pointsService;
-    }
+    @Autowired
+    private PointsService pointsService;
 
     /**
      * Prints a welcome message on the homepage
@@ -66,7 +64,6 @@ public class PointsController {
     @PostMapping("/spend")
     public ResponseEntity<Payload> spendPoints(@RequestBody SpendRequest spendRequest) {
         int pointsToSpend = spendRequest.getPoints();
-        
         
         // case where user does not have enough points
         if (pointsToSpend > pointsService.getTotal()) {
