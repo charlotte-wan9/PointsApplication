@@ -35,7 +35,8 @@
         enough for testing edge cases.
         - I did not have enough time to implement and connect a persistent database for 
         storing transactions, user's balance, payers, etc., so all data will be lost when the 
-        application restarts.
+        application restarts. (Also the instructions did not mention a database, so I wasn't sure
+        whether to include one or not)
 
 
 3. What has been a favorite school/personal project thus far? What about it that challenged you?

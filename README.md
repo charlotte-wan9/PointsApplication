@@ -1,5 +1,6 @@
 # fetch-test
 ## To Run:
+- **This project is built on Java 17**
 - Please execute these steps in the directory ```/fetch-test/```
 
 ### Using Makefile
