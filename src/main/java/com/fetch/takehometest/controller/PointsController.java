@@ -38,7 +38,7 @@ public class PointsController {
      */
     @GetMapping("/")
     public String welcome() {
-        return "Welcome to the Points Application!";
+        return "<h1>Welcome to the Points Application!</h1>";
     }
 
     /**
