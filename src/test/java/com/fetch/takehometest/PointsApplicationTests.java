@@ -116,7 +116,7 @@ class PointsApplicationTests {
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(spendRequest)))
 				.andExpect(status().isBadRequest())
-				.andExpect(content().string("User does not have enough points."));
+				.andExpect(content().string("\"User does not have enough points.\""));
 	}
 
 	/** 

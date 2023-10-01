@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fetch.takehometest.model.SpendResponse;
 import com.fetch.takehometest.model.SpendRequest;
 import com.fetch.takehometest.model.TransactionRequest;
+import com.fetch.takehometest.payload.BalancePayload;
+import com.fetch.takehometest.payload.Payload;
+import com.fetch.takehometest.payload.SpendFailPayload;
+import com.fetch.takehometest.payload.SpendSuccessPayload;
 import com.fetch.takehometest.service.PointsService;
 
 /**
@@ -60,16 +64,21 @@ public class PointsController {
      *         a status code of 200 with a response body of "payer, points" pairs of points spent, otherwise
      */
     @PostMapping("/spend")
-    public ResponseEntity<Object> spendPoints(@RequestBody SpendRequest spendRequest) {
+    public ResponseEntity<Payload> spendPoints(@RequestBody SpendRequest spendRequest) {
         int pointsToSpend = spendRequest.getPoints();
+        
         
         // case where user does not have enough points
         if (pointsToSpend > pointsService.getTotal()) {
-            return new ResponseEntity<>("User does not have enough points.", HttpStatus.BAD_REQUEST);
+            SpendFailPayload payload = new SpendFailPayload();
+            payload.setErrorMessage("User does not have enough points.");
+            return new ResponseEntity<>(payload, HttpStatus.BAD_REQUEST);
         }
 
         ArrayList<SpendResponse> spendList = pointsService.spendPoints(pointsToSpend);
-        return new ResponseEntity<>(spendList, HttpStatus.OK);
+        SpendSuccessPayload payload = new SpendSuccessPayload();
+        payload.setSpendList(spendList);
+        return new ResponseEntity<>(payload, HttpStatus.OK);
     }
 
     /**
@@ -78,8 +87,10 @@ public class PointsController {
      * @return a status code of 200 with a response body of user's balance for each payer
      */
     @GetMapping("/balance")
-    public ResponseEntity<HashMap<String, Integer>> getPointsBalance() {
+    public ResponseEntity<Payload> getPointsBalance() {
         HashMap<String, Integer> balance = pointsService.getBalance();
-        return new ResponseEntity<>(balance, HttpStatus.OK);
+        BalancePayload payload = new BalancePayload();
+        payload.setBalance(balance);
+        return new ResponseEntity<>(payload, HttpStatus.OK);
     }
 }
