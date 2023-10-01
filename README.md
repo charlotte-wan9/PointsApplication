@@ -1,4 +1,7 @@
 # fetch-test
+#### Name: Charlotte (Zixuan) Wan
+#### email: zwan35@wisc.edu
+
 ## To Run:
 - **This project is built on Java 17**
 - Please execute these steps in the directory ```/fetch-test/```
